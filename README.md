@@ -2,4 +2,4 @@
 Learning Android with Kotlin at raywenderlich.com
 https://www.raywenderlich.com/
 
-Tap me game is simple game for learning basic UI layout and Activity logic.
+Time Fighter is simple game where user click as much as possible in 60 seconds. App created for learning basics of UI layout and Activity logic in Android.
