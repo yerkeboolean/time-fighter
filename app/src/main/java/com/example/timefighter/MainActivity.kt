@@ -4,6 +4,7 @@ import android.content.IntentSender
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -20,10 +21,18 @@ class MainActivity : AppCompatActivity() {
     internal lateinit var countDownTimer: CountDownTimer
     internal val initialCountDown: Long = 60000
     internal  val countDownInterval: Long = 1000
+    internal val timeLeftOnTimer: Long = 60000
+
+    companion object {
+        private val TAG = MainActivity::class.java.simpleName
+        private const val SCORE_KEY = "SCORE_KEY"
+        private const val TIME_LEFT_KEY = "TIME_LEFT_KEY"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        Log.d(TAG, "onCreate called. Score is $score")
         tapMeButton = findViewById(R.id.tapMeButton)
         gameScoreTextView = findViewById(R.id.gameScoreTextView)
         timeLeftTextView = findViewById(R.id.timeLeftTextView)
@@ -33,6 +42,7 @@ class MainActivity : AppCompatActivity() {
 
         resetGame()
     }
+    override fun onSave
 
     private fun resetGame(){
         score = 0;
@@ -43,6 +53,7 @@ class MainActivity : AppCompatActivity() {
 
         countDownTimer = object : CountDownTimer(initialCountDown, countDownInterval) {
             override fun onTick(millisUntilFinished: Long){
+                timeLeftOnTimer = millisUntilFinished
                 val timeLeft = millisUntilFinished / 1000
                 timeLeftTextView.text = getString(R.string.timeLeft, timeLeft)
             }
